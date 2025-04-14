@@ -1,6 +1,14 @@
 # Code Context MCP
 
-A Model Context Protocol (MCP) server that provides code context and analysis for AI assistants.
+### MCP server that provides code context and analysis for AI assistants. Extracts directory structure and code symbols using WebAssembly Tree-sitter parsers with Zero Native Dependencies.
+
+<div style="text-align:center;font-family: monospace; display: flex; align-items: center; justify-content: center; width: 100%; gap: 10px">
+        <a href="https://img.shields.io/badge/License-MIT-yellow.svg"><img
+                src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+        <a href="https://www.npmjs.com/package/code-context-provider-mcp"><img src="https://img.shields.io/npm/v/code-context-provider-mcp" alt="npm"></a>
+</div>
+
+---
 
 ## Features
 
@@ -9,55 +17,48 @@ A Model Context Protocol (MCP) server that provides code context and analysis fo
 - Extract code symbols (functions, variables, classes, imports, exports)
 - Compatible with the MCP protocol for seamless integration with AI assistants
 
-## Installation
+## Quick Usage (MCP Setup)
 
-### Global Installation
+### Windows
 
+```json
+{
+  "mcpServers": {
+    "code-context-provider-mcp": {
+      "command": "cmd.exe",
+      "args": [
+        "/c",
+        "npx",
+        "code-context-provider-mcp"
+      ]
+    }
+  }
+}
+```
+
+### MacOS/Linux
+
+```json
+{
+  "mcpServers": {
+    "code-context-provider-mcp": {
+      "command": "npx",
+      "args": ["code-context-provider-mcp"]
+    }
+  }
+}
+```
+
+OR install globally with `npm`:
 ```bash
 npm install -g code-context-provider-mcp
 ```
-
-### Using npx (No Installation)
-
+Then use it by running:
 ```bash
-npx code-context-provider-mcp
+code-context-provider-mcp
 ```
 
-## WASM Parsers Setup
-
-This MCP uses WebAssembly (WASM) versions of Tree-sitter parsers instead of native modules, which avoids requiring Visual Studio C++ or other build tools.
-
-### Automatic Setup (Recommended)
-
-Run the setup script to automatically download the WASM parsers:
-
-```bash
-npm run setup
-```
-
-Or if installed globally:
-
-```bash
-npx code-context-provider-mcp-setup
-```
-
-### Manual Setup
-
-If you prefer to manually download the parsers:
-
-1. Create a `parsers` directory in the same location as the installed package
-2. Download the WASM files for the languages you want to support:
-   - JavaScript: [tree-sitter-javascript.wasm](https://github.com/tree-sitter/tree-sitter-javascript/releases)
-   - Python: [tree-sitter-python.wasm](https://github.com/tree-sitter/tree-sitter-python/releases)
-3. Place the downloaded WASM files in the `parsers` directory
-
-If you installed the package globally, the parsers directory should be located in your global node_modules folder.
-
-## Usage
-
-After starting the server, you can use it as an MCP provider with any compatible MCP client.
-
-The server provides the following tools:
+## Available Tools
 
 ### `getContext`
 
@@ -68,10 +69,34 @@ Parameters:
 - `analyzeJs` (boolean, optional): Whether to analyze JavaScript/TypeScript and Python files (default: false)
 - `includeSymbols` (boolean, optional): Whether to include code symbols in the response (default: false)
 - `symbolType` (enum, optional): Type of symbols to include if includeSymbols is true (options: 'functions', 'variables', 'classes', 'imports', 'exports', 'all', default: 'all')
-- `filePatterns` (array of strings, optional): File patterns to analyze (e.g. ['*.js', '*.py', 'config.*']). This allows analyzing specific files in a project, including files that aren't JavaScript or Python.
-- `maxDepth` (number, optional): Maximum directory depth to analyze (default: 5 levels). Useful for large projects to prevent analyzing too many directories.
+- `filePatterns` (array of strings, optional): File patterns to analyze (e.g. ['*.js', '*.py', 'config.*'])
+- `maxDepth` (number, optional): Maximum directory depth to analyze (default: 5 levels)
 
 Note: Anonymous functions are automatically filtered out of the results.
+
+## Example Output Text On Tool Call
+
+```
+Directory structure for: C:\Users\Admin\Desktop\mcp\context-provider-mcp
+
+Code Analysis Summary:
+- Files analyzed: 3
+- Total functions: 29
+- Total variables: 162
+- Total classes: 0
+
+Note: Symbol analysis is supported for JavaScript/TypeScript (.js, .jsx, .ts, .tsx) and Python (.py) files only.
+
+Code analysis limited to a maximum depth of 5 directory levels (default).
+
+├── index.js (39 KB)
+│   └── [Analyzed: 22 functions, 150 variables, 0 classes]
+│       Functions:
+│       - initializeTreeSitter [39:0]
+│       - getLanguageFromExtension [107:0]
+│       - getPosition [138:24]
+```
+
 
 ## File Pattern Examples
 
@@ -112,20 +137,21 @@ Code symbol analysis is supported for:
 
 Using the `filePatterns` parameter allows you to include other file types in the directory structure, though symbolic analysis may be limited.
 
-## License
+## Development
 
-MIT
+### Setting up the Development Environment
 
-## Publishing
+```bash
+# Clone the repository
+git clone https://github.com/your-username/code-context-provider-mcp.git
+cd code-context-provider-mcp
 
-When publishing this package to npm, the WASM files are not included directly in the package to keep the package size small. Instead, they are automatically downloaded during installation.
+# Install dependencies
+npm install
 
-### Publishing Process
-
-1. Update the version in package.json
-2. Run `npm publish`
-
-The `prepublishOnly` script will ensure that the WASM files are properly handled during the publishing process.
+# Set up WASM parsers
+npm run setup
+```
 
 ### Post-Installation
 
@@ -135,10 +161,11 @@ After installation, the package's `prepare` script automatically runs to downloa
 npx code-context-provider-mcp-setup
 ```
 
-### For Package Maintainers
+## License
 
-If you need to update the WASM files or add support for new languages:
+MIT
 
-1. Add the new language to the `SUPPORTED_LANGUAGES` object in index.js
-2. Add the WASM file URL to the `PARSERS` array in setup.js
-3. Update the README.md with information about the new supported language 
+## For more information or help
+
+- [Email (abcd49800@gmail.com)](mailto:abcd49800@gmail.com)
+- [Discord (CodePlayground)](https://discord.gg/dquNGYwfnW)

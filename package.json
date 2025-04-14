@@ -1,6 +1,6 @@
 {
   "name": "code-context-provider-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Code Context Provider MCP - analyzes code structure and provides directory context",
   "main": "index.js",
   "type": "module",
