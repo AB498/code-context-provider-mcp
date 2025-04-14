@@ -29,6 +29,7 @@
       "args": [
         "/c",
         "npx",
+        "-y",
         "code-context-provider-mcp"
       ]
     }
@@ -43,7 +44,10 @@
   "mcpServers": {
     "code-context-provider-mcp": {
       "command": "npx",
-      "args": ["code-context-provider-mcp"]
+      "args": [
+        "-y",
+        "code-context-provider-mcp"
+      ]
     }
   }
 }
