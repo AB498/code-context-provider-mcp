@@ -1,0 +1,40 @@
+{
+  "name": "code-context-provider-mcp",
+  "version": "1.0.0",
+  "description": "Code Context Provider MCP - analyzes code structure and provides directory context",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "code-context-provider-mcp": "index.js",
+    "code-context-provider-mcp-setup": "setup.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "setup": "node setup.js",
+    "prepare": "node setup.js",
+    "prepublishOnly": "node setup.js"
+  },
+  "files": [
+    "index.js",
+    "setup.js",
+    "parsers/.gitkeep",
+    "README.md"
+  ],
+  "keywords": [
+    "mcp",
+    "context",
+    "code-analysis",
+    "ast",
+    "tree-sitter"
+  ],
+  "author": "ab498",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "web-tree-sitter": "^0.20.8",
+    "zod": "^3.22.4"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
