@@ -1,4 +1,4 @@
-# Code Context MCP
+# Code Context Provider MCP
 
 ### MCP server that provides code context and analysis for AI assistants. Extracts directory structure and code symbols using WebAssembly Tree-sitter parsers with Zero Native Dependencies.
 
