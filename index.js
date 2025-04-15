@@ -907,17 +907,16 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Add the getContext tool
+// Add the get_code_context tool
 server.tool(
-  "getContext",
-  "Returns Complete Context of a given project directory, including directory tree, and code symbols. Useful for getting a quick overview of a project.",
+  "get_code_context",
+  "Returns Complete Context of a given project directory, including directory tree, and code symbols. Useful for getting a quick overview of a project. Use this tool when you need to get a comprehensive overview of a project's codebase. Useful at the start of a new task.",
   { 
-    absolutePath: z.string().describe("Absolute path to the directory to analyze. For windows, recommended to use forward slashes (e.g. C:/Users/username/Documents/project/src)"),
-    analyzeJs: z.boolean().optional().default(false).describe("Whether to analyze JavaScript/TypeScript and Python files"),
-    includeSymbols: z.boolean().optional().default(false).describe("Whether to include code symbols in the response"),
-    symbolType: z.enum(['functions', 'variables', 'classes', 'imports', 'exports', 'all']).optional().default('all').describe("Type of symbols to include if includeSymbols is true"),
-    filePatterns: z.array(z.string()).optional().describe("File patterns to analyze (e.g. ['*.js', '*.py', 'config.*']). If not provided, defaults to supported language extensions"),
-    maxDepth: z.number().optional().default(5).describe("Maximum directory depth for code analysis (default: 5 levels). Directory tree will still be built for all levels.")
+    absolutePath: z.string().describe("Absolute path to the directory to analyze. For windows, it is recommended to use forward slashes to avoid escaping (e.g. C:/Users/username/Documents/project/src)"),
+    analyzeJs: z.boolean().optional().default(false).describe("Whether to analyze JavaScript/TypeScript and Python files. Returns the count of functions, variables, classes, imports, and exports in the codebase."),
+    includeSymbols: z.boolean().optional().default(false).describe("Whether to include code symbols in the response. Returns the code symbols for each file."),
+    symbolType: z.enum(['functions', 'variables', 'classes', 'imports', 'exports', 'all']).optional().default('all').describe("Type of symbols to include if includeSymbols is true. Otherwise, returns only the directory tree."),
+    maxDepth: z.number().optional().default(5).describe("Maximum directory depth for code analysis (default: 5 levels). Directory tree will still be built for all levels. Reduce the depth if you only need a quick overview of the project.")
   },
   async ({ absolutePath, analyzeJs, includeSymbols, symbolType, filePatterns, maxDepth = 5 }) => {
     try {
@@ -1004,7 +1003,7 @@ server.tool(
         ]
       };
     } catch (error) {
-      console.error(`Error in getContext tool: ${error.message}`);
+      console.error(`Error in get_code_context tool: ${error.message}`);
       return {
         content: [{ type: "text", text: `Error: ${error.message}` }],
         isError: true

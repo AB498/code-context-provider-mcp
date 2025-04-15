@@ -65,7 +65,7 @@ code-context-provider-mcp # if you're not using @latest, you may want to clear t
 
 ## Available Tools
 
-### `getContext`
+### `get_code_context`
 
 Analyzes a directory and returns its structure along with code symbols (optional).
 
