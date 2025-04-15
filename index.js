@@ -912,7 +912,7 @@ server.tool(
   "getContext",
   "Returns Complete Context of a given project directory, including directory tree, and code symbols. Useful for getting a quick overview of a project.",
   { 
-    absolutePath: z.string().describe("Absolute path to the directory to analyze"),
+    absolutePath: z.string().describe("Absolute path to the directory to analyze. For windows, recommended to use forward slashes (e.g. C:/Users/username/Documents/project/src)"),
     analyzeJs: z.boolean().optional().default(false).describe("Whether to analyze JavaScript/TypeScript and Python files"),
     includeSymbols: z.boolean().optional().default(false).describe("Whether to include code symbols in the response"),
     symbolType: z.enum(['functions', 'variables', 'classes', 'imports', 'exports', 'all']).optional().default('all').describe("Type of symbols to include if includeSymbols is true"),

@@ -30,7 +30,7 @@
         "/c",
         "npx",
         "-y",
-        "code-context-provider-mcp"
+        "code-context-provider-mcp@latest"
       ]
     }
   }
@@ -46,7 +46,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "code-context-provider-mcp"
+        "code-context-provider-mcp@latest"
       ]
     }
   }
@@ -59,7 +59,7 @@ npm install -g code-context-provider-mcp
 ```
 Then use it by running:
 ```bash
-code-context-provider-mcp
+code-context-provider-mcp # if you're not using @latest, you may want to clear the cache for latest version using `Remove-Item -Path "$env:LOCALAPPDATA\npm-cache\_npx" -Recurse -Force` for windows and `rm -rf ~/.npm/_npx` for linux/macos
 ```
 
 ## Available Tools
