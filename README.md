@@ -3,7 +3,7 @@
 ### MCP server that provides code context and analysis for AI assistants. Extracts directory structure and code symbols using WebAssembly Tree-sitter parsers with Zero Native Dependencies.
 
 <div style="text-align:center;font-family: monospace; display: flex; align-items: center; justify-content: center; width: 100%; gap: 10px">
-        <a href="https://discord.gg/dquNGYwfnW"><img src="https://img.shields.io/discord/1095854826786668545" alt="Discord"></a>
+        <a href="https://discord.gg/ZeeqSBpjU2"><img src="https://img.shields.io/discord/1095854826786668545" alt="Discord"></a>
         <a href="https://img.shields.io/badge/License-MIT-yellow.svg"><img
                 src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
         <a href="https://www.npmjs.com/package/code-context-provider-mcp"><img src="https://img.shields.io/npm/v/code-context-provider-mcp" alt="npm"></a>
@@ -173,4 +173,4 @@ MIT
 ## For more information or help
 
 - [Email (abcd49800@gmail.com)](mailto:abcd49800@gmail.com)
-- [Discord (CodePlayground)](https://discord.gg/dquNGYwfnW)
+- [Discord (CodePlayground)](https://discord.gg/ZeeqSBpjU2)
