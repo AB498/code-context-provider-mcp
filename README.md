@@ -20,6 +20,14 @@
 
 ## Quick Usage (MCP Setup)
 
+### Installing via Smithery
+
+To install Code Context Provider for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@AB498/code-context-provider-mcp):
+
+```bash
+npx -y @smithery/cli install @AB498/code-context-provider-mcp --client claude
+```
+
 ### Windows
 
 ```json
