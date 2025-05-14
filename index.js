@@ -920,12 +920,23 @@ server.tool(
   },
   async ({ absolutePath, analyzeJs, includeSymbols, symbolType, filePatterns, maxDepth = 5 }) => {
     try {
-      // Check if the path is C:/ drive on Windows OS
-      if (process.platform === 'win32' && /^[cC]:[\\/]/.test(absolutePath)) {
-        return {
-          content: [{ type: "text", text: "C drive is not a project directory. Try different path" }],
-          isError: true
-        };
+      // Check if the path is C:/ drive root or common non-project directories on Windows OS
+      if (process.platform === 'win32') {
+        // Check for C: drive root or common system directories that are not project directories
+        const nonProjectPaths = [
+          /^[cC]:[\\/]?$/,                // C:/ or C:
+          /^[cC]:[\\/]Users[\\/]?$/,      // C:/Users/
+          /^[cC]:[\\/]Windows[\\/]?$/,    // C:/Windows/
+          /^[cC]:[\\/]Program Files[\\/]?$/,  // C:/Program Files/
+          /^[cC]:[\\/]Program Files \(x86\)[\\/]?$/  // C:/Program Files (x86)/
+        ];
+
+        if (nonProjectPaths.some(regex => regex.test(absolutePath))) {
+          return {
+            content: [{ type: "text", text: "C drive is not a project directory. Try different path" }],
+            isError: true
+          };
+        }
       }
 
       // Ensure TreeSitter is initialized if we're going to analyze code
