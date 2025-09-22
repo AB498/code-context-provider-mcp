@@ -1,0 +1,31 @@
+# Dependency directories
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Optional npm cache directory
+.npm
+
+# Environment variables
+.env
+
+# Build output
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Tree-sitter WASM files
+parsers/*.wasm
+
+# Keep the parsers directory structure
+!parsers/.gitkeep 
